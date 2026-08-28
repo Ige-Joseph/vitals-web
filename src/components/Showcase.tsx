@@ -71,43 +71,60 @@ function AppFrame({ src, alt, tilt = 0 }: { src: string; alt: string; tilt?: num
         {has ? (
           <Image src={src} alt={alt} fill sizes="(max-width: 900px) 100vw, 55vw" style={{ objectFit: 'cover', objectPosition: 'top' }} />
         ) : (
+          // Until a screenshot is captured the frame shows the application's
+          // own surface treatment rather than a note to the developer. It reads
+          // as a product waiting to load, not as a broken page.
           <div
             role="img"
             aria-label={alt}
             style={{
               position: 'absolute',
               inset: 0,
+              padding: '1.15rem',
               display: 'grid',
-              placeItems: 'center',
-              padding: '1.5rem',
-              textAlign: 'center',
+              gridTemplateColumns: '84px 1fr',
+              gap: '0.85rem',
               background:
                 'linear-gradient(160deg, var(--surface-container-lowest) 0%, var(--surface-container-low) 100%)',
             }}
           >
-            <div style={{ maxWidth: '30ch' }}>
-              <span
-                className="material-symbols-rounded"
-                aria-hidden="true"
-                style={{ fontSize: 30, color: 'var(--outline)' }}
-              >
-                image
-              </span>
-              <p
-                style={{
-                  marginTop: '0.5rem',
-                  fontFamily: 'var(--font-headline)',
-                  fontWeight: 700,
-                  fontSize: '0.875rem',
-                  color: 'var(--on-surface-variant)',
-                }}
-              >
-                {alt}
-              </p>
-              <p style={{ marginTop: '0.375rem', fontSize: '0.72rem', color: 'var(--outline)' }}>
-                Screenshot pending — add <code>{src}</code>
-              </p>
+            {/* A suggestion of the app's sidebar and cards, in flat tints. */}
+            <div
+              aria-hidden="true"
+              style={{
+                borderRadius: 'var(--radius-md)',
+                background: 'var(--surface-container)',
+                display: 'grid',
+                alignContent: 'start',
+                gap: '0.4rem',
+                padding: '0.6rem 0.5rem',
+              }}
+            >
+              <span style={{ height: 9, borderRadius: 99, background: 'var(--primary-fixed-dim)' }} />
+              {[0, 1, 2, 3].map(i => (
+                <span key={i} style={{ height: 7, borderRadius: 99, background: 'var(--outline-variant)', opacity: 0.55 }} />
+              ))}
             </div>
+
+            <div aria-hidden="true" style={{ display: 'grid', gap: '0.6rem', alignContent: 'start' }}>
+              <span style={{ height: 13, width: '46%', borderRadius: 99, background: 'var(--primary-fixed-dim)' }} />
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem' }}>
+                {[0, 1].map(i => (
+                  <span
+                    key={i}
+                    style={{
+                      height: 54,
+                      borderRadius: 'var(--radius-md)',
+                      background: i === 0 ? 'var(--primary-fixed)' : 'var(--tertiary-fixed)',
+                      opacity: 0.85,
+                    }}
+                  />
+                ))}
+              </div>
+              <span style={{ height: 40, borderRadius: 'var(--radius-md)', background: 'var(--surface-container)' }} />
+              <span style={{ height: 40, borderRadius: 'var(--radius-md)', background: 'var(--surface-container)' }} />
+            </div>
+
           </div>
         )}
       </div>

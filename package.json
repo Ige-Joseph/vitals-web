@@ -4,9 +4,9 @@
   "private": true,
   "description": "Public marketing website for Vitals.",
   "scripts": {
-    "dev": "next dev -p 3101",
+    "dev": "next dev -p 3102",
     "build": "next build",
-    "start": "next start -p 3101",
+    "start": "next start -p 3102",
     "typecheck": "tsc --noEmit",
     "lint": "next lint"
   },

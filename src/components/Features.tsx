@@ -67,6 +67,7 @@ export function Features() {
                 src="/images/caregiver.jpg"
                 alt="A daughter helping her mother sort her medicines for the week."
                 ratio="1 / 1"
+                tone="warm"
               />
             </div>
           </Reveal>

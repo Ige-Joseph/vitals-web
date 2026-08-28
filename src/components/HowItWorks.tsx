@@ -12,6 +12,20 @@ export function HowItWorks() {
   return (
     <section className="section">
       <div className="page">
+        {/*
+          A single held sentence before the mechanics.
+
+          Borrowed in shape from mbilafiamedical.com's "Accuracy is not just a
+          standard — it's a promise": one line, confident, no adjectives doing
+          the work. The claim is deliberately small enough to be true.
+        */}
+        <Reveal>
+          <blockquote className="statement">
+            <p>Keeping track of your health shouldn&rsquo;t be the hard part.</p>
+            <cite>That is the whole idea behind Vitals.</cite>
+          </blockquote>
+        </Reveal>
+
         <SectionHead eyebrow="How it works" title="Three steps, and you are set up." align="center" />
 
         <ol className="steps">
@@ -34,6 +48,28 @@ export function HowItWorks() {
       </div>
 
       <style>{`
+        .statement {
+          margin: 0 auto clamp(3.5rem, 7vw, 5.5rem);
+          max-width: 24ch;
+          text-align: center;
+          border: 0;
+          padding: 0;
+        }
+        .statement p {
+          font-family: var(--font-headline);
+          font-weight: 800;
+          font-size: clamp(1.6rem, 3.6vw, 2.6rem);
+          line-height: 1.15;
+          letter-spacing: -0.02em;
+          text-wrap: balance;
+        }
+        .statement cite {
+          display: block;
+          margin-top: 1rem;
+          font-style: normal;
+          font-size: var(--step-small);
+          color: var(--on-surface-variant);
+        }
         .steps {
           list-style: none;
           margin: 0;
