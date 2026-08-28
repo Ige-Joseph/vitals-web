@@ -186,6 +186,67 @@ img {
   line-height: 1.55;
 }
 
+/* ── Brand surfaces ──────────────────────────────────────────────────── */
+/*
+ * Colour carried by large, quiet fields rather than by decoration. These are
+ * the existing tokens at low opacity — no new hues — which is what keeps the
+ * page feeling like Vitals while giving it something other than white to sit
+ * on.
+ */
+.tint-primary {
+  background:
+    radial-gradient(1100px 520px at 78% -12%, rgba(0, 91, 191, 0.10), transparent 62%),
+    radial-gradient(760px 420px at 8% 8%, rgba(158, 67, 0, 0.055), transparent 60%),
+    var(--surface);
+}
+
+.tint-deep {
+  background:
+    radial-gradient(900px 480px at 82% 0%, rgba(0, 91, 191, 0.13), transparent 60%),
+    var(--surface-container-low);
+}
+
+/* A hairline that fades out — used to close sections without a hard rule. */
+.rule-fade {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: linear-gradient(90deg, transparent, var(--outline-variant) 22%, var(--outline-variant) 78%, transparent);
+}
+
+/* Headline accent. One word in brand blue, which is cheaper and calmer than a
+   gradient across the whole line. */
+.accent {
+  color: var(--primary);
+}
+
+/* ── Logo ────────────────────────────────────────────────────────────── */
+/*
+ * The mark gives a small heartbeat every five seconds.
+ *
+ * The animation runs for well under a second and then the keyframes hold the
+ * resting state for the remainder, which is how a long, mostly-idle loop is
+ * done without a timer in JavaScript. Percentages below are of 5s: 0–7% is the
+ * beat, everything after is still.
+ */
+@keyframes logoBeat {
+  0%   { transform: scale(1); }
+  2.5% { transform: scale(1.09); }
+  5%   { transform: scale(0.98); }
+  7%   { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+.logo-mark {
+  animation: logoBeat 5s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-mark { animation: none; }
+}
+
 /* ── Motion ──────────────────────────────────────────────────────────── */
 /*
  * One reveal, used everywhere: a short rise and fade as a section enters view.

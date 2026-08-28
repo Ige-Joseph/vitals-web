@@ -3,6 +3,16 @@ import { features } from '@/content/site';
 import { Photo } from './Photo';
 
 /**
+ * Three accent pairs from the existing palette — brand blue, the warm tertiary,
+ * the muted secondary. No new colours; just more than one.
+ */
+const TILES = [
+  { bg: 'var(--primary-fixed)', fg: 'var(--on-primary-fixed-variant)' },
+  { bg: 'var(--tertiary-fixed)', fg: 'var(--tertiary)' },
+  { bg: 'var(--secondary-fixed)', fg: 'var(--on-secondary-container)' },
+] as const;
+
+/**
  * What Vitals does.
  *
  * Six things, each one already in the product. The grid is broken once by a
@@ -11,7 +21,7 @@ import { Photo } from './Photo';
  */
 export function Features() {
   return (
-    <section id="features" className="section" style={{ background: 'var(--surface-container-low)' }}>
+    <section id="features" className="section tint-deep">
       <div className="page">
         <SectionHead
           eyebrow="What it does"
@@ -23,20 +33,23 @@ export function Features() {
           {features.map((feature, i) => (
             <Reveal as="li" key={feature.title} delay={i * 60}>
               <Card>
+                {/* The icon tile cycles through the three brand accents, so a
+                    grid of six cards has rhythm without any card being
+                    decorated differently from the rest. */}
                 <span
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    width: 48,
-                    height: 48,
+                    width: 52,
+                    height: 52,
                     borderRadius: 'var(--radius-lg)',
-                    background: 'var(--primary-fixed)',
-                    color: 'var(--on-primary-fixed-variant)',
+                    background: TILES[i % TILES.length].bg,
+                    color: TILES[i % TILES.length].fg,
                     marginBottom: '1.25rem',
                   }}
                 >
-                  <Icon name={feature.icon} size={24} />
+                  <Icon name={feature.icon} size={26} />
                 </span>
 
                 <h3 style={{ fontSize: 'var(--step-h3)', fontWeight: 700 }}>{feature.title}</h3>

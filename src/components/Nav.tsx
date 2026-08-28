@@ -69,7 +69,7 @@ export function Nav() {
           aria-label="Vitals — home"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/icons/icon-192x192.png" alt="" width={32} height={32} style={{ borderRadius: 8 }} />
+          <img src="/icons/icon-192x192.png" alt="" width={32} height={32} className="logo-mark" style={{ borderRadius: 8 }} />
           <span
             style={{
               fontFamily: 'var(--font-headline)',

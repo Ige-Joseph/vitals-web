@@ -119,7 +119,7 @@ export function Showcase() {
   const [lead, ...rest] = showcase;
 
   return (
-    <section id="product" className="section" style={{ background: 'var(--surface-container-low)' }}>
+    <section id="product" className="section tint-primary">
       <div className="page">
         <SectionHead
           eyebrow="The product"
