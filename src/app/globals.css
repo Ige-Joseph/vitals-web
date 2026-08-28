@@ -1,0 +1,233 @@
+/*
+ * The Vitals Universal Theme.
+ *
+ * Copied verbatim from vitals-frontend/src/index.css — the same Material 3
+ * token names, the same hex values, the same radii and shadows. This is a
+ * duplicate rather than an import because the two apps do not share a build,
+ * and a marketing site that drifts from the product it is selling is worse than
+ * a little duplication. If a token changes there, change it here.
+ *
+ * What is added below the token block is scale, not identity: marketing needs
+ * larger type and more air than an application does. No new colours, no second
+ * palette, no other typeface.
+ */
+
+:root {
+  /* ── Vitals tokens ─────────────────────────────────────────────────── */
+  --surface: #f7f9ff;
+  --surface-container-low: #f1f4fa;
+  --surface-container: #ebeef4;
+  --surface-container-high: #e5e8ee;
+  --surface-container-highest: #dfe3e8;
+  --surface-container-lowest: #ffffff;
+  --surface-dim: #d7dae0;
+
+  --primary: #005bbf;
+  --primary-container: #1a73e8;
+  --primary-fixed: #d8e2ff;
+  --primary-fixed-dim: #adc7ff;
+  --on-primary: #ffffff;
+  --on-primary-fixed-variant: #004493;
+
+  --secondary: #475e8c;
+  --secondary-container: #b2c9fe;
+  --secondary-fixed: #d8e2ff;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #3d5481;
+
+  --tertiary: #9e4300;
+  --tertiary-fixed: #ffdbcb;
+  --tertiary-fixed-dim: #ffb691;
+  --on-tertiary: #ffffff;
+
+  --error: #ba1a1a;
+  --error-container: #ffdad6;
+  --on-error: #ffffff;
+  --on-error-container: #93000a;
+
+  --on-surface: #181c20;
+  --on-surface-variant: #414754;
+  --outline: #727785;
+  --outline-variant: #c1c6d6;
+  --inverse-surface: #2d3135;
+  --inverse-on-surface: #eef1f7;
+
+  --gradient-primary: linear-gradient(135deg, #005bbf 0%, #1a73e8 100%);
+
+  --shadow-sm: 0 2px 8px rgba(24, 28, 32, 0.04);
+  --shadow-md: 0 4px 20px rgba(24, 28, 32, 0.06);
+  --shadow-lg: 0 10px 40px rgba(24, 28, 32, 0.08);
+  --shadow-xl: 0 20px 60px rgba(24, 28, 32, 0.1);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
+
+  --font-headline: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* ── Marketing scale ───────────────────────────────────────────────── */
+  --page: 1180px;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --section-y: clamp(4.5rem, 10vw, 8rem);
+
+  /* Fluid type. The clamps mean phone and desktop are each composed rather
+     than one being a shrunken copy of the other. */
+  --step-display: clamp(2.4rem, 6.2vw, 4.25rem);
+  --step-h2: clamp(1.85rem, 4vw, 2.9rem);
+  --step-h3: clamp(1.15rem, 1.7vw, 1.4rem);
+  --step-lead: clamp(1.05rem, 1.9vw, 1.3rem);
+  --step-body: 1rem;
+  --step-small: 0.875rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* The sticky header would otherwise cover a section jumped to from the nav. */
+  scroll-padding-top: 6rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  font-size: var(--step-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-headline);
+  color: var(--on-surface);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Focus is visible everywhere, and uses the brand colour rather than the
+   browser default so it reads as part of the design instead of an accident. */
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Skip link: present for keyboard users, out of the way for everyone else. */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--surface-container-lowest);
+  color: var(--on-surface);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+}
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* ── Layout helpers ──────────────────────────────────────────────────── */
+.page {
+  width: 100%;
+  max-width: var(--page);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.eyebrow {
+  font-family: var(--font-headline);
+  font-size: var(--step-small);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.lead {
+  font-size: var(--step-lead);
+  color: var(--on-surface-variant);
+  line-height: 1.55;
+}
+
+/* ── Motion ──────────────────────────────────────────────────────────── */
+/*
+ * One reveal, used everywhere: a short rise and fade as a section enters view.
+ * It is CSS driven by a class the observer adds, so nothing animates on the
+ * main thread and no animation library ships to the browser.
+ */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal[data-shown='true'] {
+  opacity: 1;
+  transform: none;
+}
+
+/*
+ * Anyone who has asked for less motion gets none of it, and — importantly —
+ * still sees all the content. A reveal that stays invisible without its
+ * animation would hide the page from the people most likely to need it.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
