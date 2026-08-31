@@ -39,6 +39,10 @@ export const WAITLIST_ENDPOINT = process.env.NEXT_PUBLIC_WAITLIST_ENDPOINT ?? ''
 export const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? '';
 
 export const nav = [
+  // "What is it" first, because that is the question a first-time visitor is
+  // holding. "Product" points at screenshots, which answers a later question —
+  // it read as the explanation and was not one.
+  { label: 'What is Vitals', href: '#about' },
   { label: 'Product', href: '#product' },
   { label: 'Features', href: '#features' },
   { label: 'FAQ', href: '#faq' },
@@ -54,6 +58,30 @@ export const hero = {
   secondary: { label: 'Join the waitlist', href: '#waitlist' },
   note: 'Free to use on the web. The mobile app is on the way.',
 };
+
+/**
+ * What Vitals actually is.
+ *
+ * The hero says what it helps you do; this says what it *is*, which is not the
+ * same thing and was missing. A first-time visitor could previously read the
+ * whole page without learning whether Vitals is an app, a service or a device —
+ * and the only use of the word "app" was "the mobile app is on the way", which
+ * reads as though the product itself has not shipped.
+ *
+ * Four plain answers: what it is, who it is for, what it costs, where it runs.
+ */
+export const explainer = {
+  eyebrow: 'In short',
+  title: 'So, what is Vitals?',
+  body:
+    'Vitals is a free web app for keeping track of your health. You add your medicines, appointments and how you have been feeling, and it keeps them together and reminds you when something is due. You can use it on your own, or share a record with family who help look after you.',
+  facts: [
+    { icon: 'language', label: 'What it is', value: 'A web app you open in your browser' },
+    { icon: 'group', label: 'Who it is for', value: 'Anyone managing their health, or someone else’s' },
+    { icon: 'payments', label: 'What it costs', value: 'Free. A few extras are Premium' },
+    { icon: 'devices', label: 'Where it works', value: 'Any phone or computer, today' },
+  ],
+} as const;
 
 export const features = [
   {
