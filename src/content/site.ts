@@ -1,6 +1,6 @@
 /** Public, product-checked Vitals marketing content. */
 
-export const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://vital-app-ivory.vercel.app';
+export const APP_URL = 'https://vitals.loamlyntech.com/';
 export const APP_STORE_URL = process.env.NEXT_PUBLIC_APP_STORE_URL ?? '';
 export const PLAY_STORE_URL = process.env.NEXT_PUBLIC_PLAY_STORE_URL ?? '';
 export const WAITLIST_ENDPOINT = process.env.NEXT_PUBLIC_WAITLIST_ENDPOINT ?? '';

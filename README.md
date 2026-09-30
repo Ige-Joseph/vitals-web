@@ -17,7 +17,6 @@ Copy `.env.example` to `.env.local` and set only values that are ready to use.
 
 | Variable | When unset |
 |---|---|
-| `NEXT_PUBLIC_APP_URL` | Uses the current deployed Vitals app URL |
 | `NEXT_PUBLIC_WAITLIST_ENDPOINT` | Mobile waitlist is not shown |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Contact link is omitted |
 | `NEXT_PUBLIC_APP_STORE_URL` / `NEXT_PUBLIC_PLAY_STORE_URL` | Not linked; do not publish until the app is available |
