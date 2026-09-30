@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Button, Icon } from './ui';
-import { nav, APP_URL } from '@/content/site';
+import { nav, APP_URL, WAITLIST_ENDPOINT } from '@/content/site';
 
 /**
  * The header.
@@ -147,7 +147,7 @@ export function Nav() {
         >
           <nav className="page" aria-label="Main" style={{ paddingBlock: '1rem 1.5rem' }}>
             <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: '0.25rem' }}>
-              {[...nav, { label: 'Join the waitlist', href: '#waitlist' }].map(item => (
+              {[...nav, ...(WAITLIST_ENDPOINT ? [{ label: 'Android app updates', href: '#waitlist' }] : [])].map(item => (
                 <li key={item.href}>
                   <a
                     href={item.href}

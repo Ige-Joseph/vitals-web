@@ -1,24 +1,11 @@
 import { Reveal, SectionHead } from './ui';
 import { steps } from '@/content/site';
 
-/**
- * Three steps.
- *
- * Meant to be scanned rather than read: a number, a short line, one sentence.
- * The connecting rule between steps is drawn on desktop only — vertically it
- * would run through the numbers rather than between them.
- */
+/** A short, product-led explanation of how to get started with Vitals. */
 export function HowItWorks() {
   return (
     <section className="section">
       <div className="page">
-        {/*
-          A single held sentence before the mechanics.
-
-          Borrowed in shape from mbilafiamedical.com's "Accuracy is not just a
-          standard — it's a promise": one line, confident, no adjectives doing
-          the work. The claim is deliberately small enough to be true.
-        */}
         <Reveal>
           <blockquote className="statement">
             <p>Keeping track of your health shouldn&rsquo;t be the hard part.</p>
@@ -26,7 +13,7 @@ export function HowItWorks() {
           </blockquote>
         </Reveal>
 
-        <SectionHead eyebrow="How it works" title="Three steps, and you are set up." align="center" />
+        <SectionHead eyebrow="How it works" title="A simple place to begin." align="center" />
 
         <ol className="steps">
           {steps.map((step, i) => (
@@ -96,16 +83,7 @@ export function HowItWorks() {
         }
         /* The rule joining the steps, drawn from each number to the next. */
         @media (min-width: 861px) {
-          .steps > li { position: relative; }
-          .steps > li:not(:last-child) .step::after {
-            content: '';
-            position: absolute;
-            top: 28px;
-            left: 72px;
-            right: calc(-1 * clamp(1.5rem, 4vw, 3rem) - 16px);
-            height: 2px;
-            background: linear-gradient(90deg, var(--outline-variant), transparent);
-          }
+          .steps { background: linear-gradient(90deg, var(--outline-variant), transparent) 28px 28px / calc(100% - 56px) 2px no-repeat; }
         }
         @media (max-width: 860px) {
           .steps { grid-template-columns: 1fr; gap: 2rem; }

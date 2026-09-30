@@ -1,254 +1,125 @@
-/**
- * Everything the marketing site says, in one place.
- *
- * Copy lives here rather than inside components so it can be changed without
- * touching layout, and so every claim on the site can be reviewed by reading a
- * single file. That matters more than usual here: this is a health product, and
- * the difference between "helps you keep track of your medicines" and anything
- * that sounds like medical advice is a difference somebody has to be able to
- * check.
- *
- * Every feature listed below exists in the product today. Nothing here is
- * aspirational except the mobile app, which is labelled as such everywhere it
- * appears.
- */
+/** Public, product-checked Vitals marketing content. */
 
-/** Where the real, running Vitals web application lives. */
-export const APP_URL =
-  process.env.NEXT_PUBLIC_APP_URL ?? 'https://vital-app-ivory.vercel.app';
-
-/**
- * The mobile apps do not exist yet.
- *
- * These stay empty until there is something to link to. The buttons read as
- * "coming soon" and are not clickable while these are unset — see StoreButtons.
- * When the React Native app ships, set the two environment variables and the
- * buttons become real links with no other change.
- */
+export const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://vital-app-ivory.vercel.app';
 export const APP_STORE_URL = process.env.NEXT_PUBLIC_APP_STORE_URL ?? '';
 export const PLAY_STORE_URL = process.env.NEXT_PUBLIC_PLAY_STORE_URL ?? '';
-
-/**
- * Where the waitlist and contact forms post.
- *
- * No endpoint exists in the Vitals backend for either, so rather than inventing
- * one the forms post to whatever is configured here. Unset, they explain that
- * sign-ups are not open yet instead of pretending to succeed.
- */
 export const WAITLIST_ENDPOINT = process.env.NEXT_PUBLIC_WAITLIST_ENDPOINT ?? '';
 export const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? '';
 
 export const nav = [
-  // "What is it" first, because that is the question a first-time visitor is
-  // holding. "Product" points at screenshots, which answers a later question —
-  // it read as the explanation and was not one.
-  { label: 'What is Vitals', href: '#about' },
+  { label: 'About', href: '#about' },
   { label: 'Product', href: '#product' },
-  { label: 'Features', href: '#features' },
+  { label: 'Mother & Baby', href: '#mother-baby' },
+  { label: 'Family care', href: '#family-care' },
   { label: 'FAQ', href: '#faq' },
-  { label: 'Contact', href: '#contact' },
 ] as const;
 
 export const hero = {
-  eyebrow: 'Your health companion',
-  title: 'Your health, all in one place.',
-  body:
-    'Vitals helps you keep track of your medicines, note how you are feeling, and keep your health information together — so it is there when you need it.',
+  eyebrow: 'A health app for everyday care',
+  title: 'Your health, with a little more in order.',
+  body: 'Keep medicines, appointments, symptom checks and mood entries together. Use Vitals for your own care, a pregnancy journey, or the people whose care you help manage.',
   primary: { label: 'Open Vitals', href: APP_URL },
-  secondary: { label: 'Join the waitlist', href: '#waitlist' },
-  note: 'Free to use on the web. The mobile app is on the way.',
+  secondary: { label: 'See how it works', href: '#about' },
+  note: 'Use Vitals in your browser today. Free features are available; some extras are Premium.',
 };
 
-/**
- * What Vitals actually is.
- *
- * The hero says what it helps you do; this says what it *is*, which is not the
- * same thing and was missing. A first-time visitor could previously read the
- * whole page without learning whether Vitals is an app, a service or a device —
- * and the only use of the word "app" was "the mobile app is on the way", which
- * reads as though the product itself has not shipped.
- *
- * Four plain answers: what it is, who it is for, what it costs, where it runs.
- */
 export const explainer = {
-  eyebrow: 'In short',
-  title: 'So, what is Vitals?',
-  body:
-    'Vitals is a free web app for keeping track of your health. You add your medicines, appointments and how you have been feeling, and it keeps them together and reminds you when something is due. You can use it on your own, or share a record with family who help look after you.',
+  eyebrow: 'A health app that keeps things together',
+  title: 'Your health story, easier to keep track of.',
+  body: 'Vitals gives you one place to record medicines and doses, appointments, symptom checks and mood. Follow a pregnancy and baby care journey, or manage a record for someone who depends on your care. Use it in your browser today; the Android app is in development, with iOS planned later.',
   facts: [
-    { icon: 'language', label: 'What it is', value: 'A web app you open in your browser' },
-    { icon: 'group', label: 'Who it is for', value: 'Anyone managing their health, or someone else’s' },
-    { icon: 'payments', label: 'What it costs', value: 'Free. A few extras are Premium' },
-    { icon: 'devices', label: 'Where it works', value: 'Any phone or computer, today' },
+    { icon: 'person', label: 'Your health', value: 'Medicines, doses, symptom checks and appointments' },
+    { icon: 'pregnant_woman', label: 'Mother & Baby', value: 'Pregnancy timeline, mood and baby care' },
+    { icon: 'family_restroom', label: 'Family care', value: 'Manage a record or connect with an adult' },
+    { icon: 'devices', label: 'Use it today', value: 'Open Vitals in your phone or computer browser' },
   ],
 } as const;
 
-export const features = [
+export const everydayFeatures = [
+  { icon: 'medication', title: 'Medicines and dose records', body: 'Keep a schedule, get reminders, and record doses as taken, skipped or missed.' },
+  { icon: 'calendar_month', title: 'Appointments that stay in view', body: 'Add a visit and choose when Vitals should remind you ahead of it.' },
+  { icon: 'monitor_heart', title: 'Symptom and mood history', body: 'Review previous AI symptom checks and mood entries.' },
+] as const;
+
+export const smartTools = [
   {
-    icon: 'medication',
-    title: 'Stay on top of your medicines',
-    body:
-      'Add what you take and when. Vitals reminds you, and keeps a record of the doses you logged.',
+    icon: 'psychology', title: 'Symptom Checker',
+    body: 'Describe what you are experiencing and review an informational AI response with its safety guidance.',
+    screenshot: '/images/screens/symptom-checker.webp', alt: 'Vitals Symptom Checker entry screen with an example symptom and safety guidance.', ratio: '2 / 1',
   },
   {
-    icon: 'monitor_heart',
-    title: 'Note how you feel',
-    body:
-      'Write down symptoms and mood as they happen, and look back over them later.',
-  },
-  {
-    icon: 'calendar_month',
-    title: 'Keep appointments in view',
-    body:
-      'Add appointments, get reminded, and sync them to the calendar you already use.',
-  },
-  {
-    icon: 'diversity_3',
-    title: 'Care for someone else',
-    body:
-      'Invite family to help, or manage a record for a parent or child. You decide who sees what.',
-  },
-  {
-    icon: 'psychology',
-    title: 'Make sense of health information',
-    body:
-      'Ask about symptoms in plain words, or point your camera at a medicine box to see what it is.',
-  },
-  {
-    icon: 'pregnancy',
-    title: 'Follow a pregnancy',
-    body:
-      'Track a pregnancy week by week, and carry on with your baby after they arrive.',
+    icon: 'biotech', title: 'Drug Scan',
+    body: 'Upload a clear medicine image to review an identification result and related information. Results can be uncertain.',
+    screenshot: '/images/screens/drug-scan.webp', alt: 'Vitals Drug Scan upload screen for medicine identification.', ratio: '2.3 / 1',
   },
 ] as const;
 
 export const steps = [
-  {
-    n: '1',
-    title: 'Add your health information',
-    body: 'Your medicines, conditions and appointments — in one place instead of five.',
-  },
-  {
-    n: '2',
-    title: 'Track and understand it',
-    body: 'Log doses and symptoms as you go, and see what has happened over time.',
-  },
-  {
-    n: '3',
-    title: 'Stay informed',
-    body: 'Get reminders when they matter, and take a summary with you to a visit.',
-  },
+  { n: '1', title: 'Choose a record', body: 'Use your own, create a managed record, or accept an adult\'s invitation to connect.' },
+  { n: '2', title: 'Add what matters', body: 'Keep medicines, appointments, symptoms and care milestones together.' },
+  { n: '3', title: 'Come back when you need it', body: 'Review your record, get reminders, and bring a Premium health summary to a visit.' },
 ] as const;
 
-/**
- * The product showcase.
- *
- * `image` points at a screenshot of the real application in /public/images.
- * Where a screenshot has not been captured yet the frame renders a labelled
- * placeholder rather than a fabricated interface — see docs in
- * public/images/README.md. Nothing here draws a screen that does not exist.
- */
 export const showcase = [
-  {
-    id: 'dashboard',
-    title: 'Everything for today, first',
-    body: 'What to take, where to be, and what you have logged — on one screen.',
-    image: '/images/app-dashboard.png',
-    alt: 'The Vitals dashboard showing today’s medicines and appointments.',
-  },
-  {
-    id: 'medications',
-    title: 'Your medicines, and the doses you took',
-    body: 'Doses appear as what you recorded — taken, skipped, missed — never as a score.',
-    image: '/images/app-medications.png',
-    alt: 'A medication in Vitals with its schedule and recorded doses.',
-  },
-  {
-    id: 'summary',
-    title: 'A summary you can take to a visit',
-    body: 'A PDF of what you recorded over a period you choose. Part of Premium.',
-    image: '/images/app-summary.png',
-    alt: 'A Vitals health summary being prepared for download.',
-  },
+  { id: 'dashboard', title: 'A clear view of today', body: 'See your upcoming care tasks and recent activity in one place.', image: '/images/screens/dashboard.webp', alt: 'Vitals dashboard showing demo care tasks and activity.', ratio: '9 / 7' },
+  { id: 'appointments', title: 'Appointments and reminders', body: 'Keep upcoming visits in view and choose when Vitals should remind you.', image: '/images/screens/appointments.webp', alt: 'Vitals appointments screen showing a scheduled demo check-in.', ratio: '16 / 10' },
+  { id: 'summary', title: 'A health summary for your next visit', body: 'Generate a PDF of recorded health information for a date range you choose. Included with Premium.', image: '/images/screens/health-summary-premium.webp', alt: 'Vitals Premium health summary feature and its access gate.', ratio: '16 / 10' },
 ] as const;
+
+export const pregnancy = {
+  eyebrow: 'Mother & Baby', title: 'A journey with room for every next step.',
+  body: 'Set up a pregnancy timeline from a date or current week, record mood, and continue into a baby profile with vaccination milestones and reminders.',
+  image: '/images/story/pregnancy-journey.webp', alt: 'A pregnant woman resting a hand on her belly.',
+  screenshot: '/images/screens/pregnancy-timeline.webp', screenshotAlt: 'Vitals Mother & Baby pregnancy timeline with demo information.', ratio: '17 / 18',
+  babyScreenshot: '/images/screens/baby-profile.webp', babyScreenshotAlt: 'Vitals baby profile with an invented demo vaccination timeline.', babyRatio: '17 / 20',
+};
+
+export const familyCare = {
+  eyebrow: 'Family & connected care', title: 'Care for someone, or stay connected to their record.',
+  body: 'Managed records are for people whose care you organise when they do not have a Vitals account of their own. Connected adults have their own account and choose to share access with you by invitation.',
+  image: '/images/story/family-at-home.webp', alt: 'A family sitting together at home.',
+  screenshot: '/images/screens/family-invitation.webp', screenshotAlt: 'Vitals invitation screen for sharing access to a managed demo record.', ratio: '4 / 5',
+};
+
+export const premium = {
+  title: 'More room for the care you manage.',
+  body: 'Vitals has free features for your own health record. Premium includes downloadable health summaries and additional capacity for family records and connections.',
+  screenshot: '/images/screens/health-summary-premium.webp', screenshotAlt: 'Vitals Health Summary feature gate explaining the Premium PDF summary.',
+  note: 'The app shows current Premium details and availability. No pricing or limits are published here.',
+};
 
 export const trust = [
-  {
-    icon: 'lock',
-    title: 'Your record is yours',
-    body:
-      'Nobody sees your health information unless you invite them, and you can remove access at any time.',
-  },
-  {
-    icon: 'history',
-    title: 'Sharing is recorded',
-    body:
-      'When you give someone access, that is written down — who, what, and when.',
-  },
-  {
-    icon: 'draft',
-    title: 'Nothing is diagnosed',
-    body:
-      'Vitals shows what you recorded. It does not assess it, score it or rate it.',
-  },
+  { icon: 'lock', title: 'You manage access', body: 'Sharing starts with an invitation. You can manage a connection or remove access to your own record.' },
+  { icon: 'history', title: 'Your entries stay in context', body: 'Vitals keeps the information you record together so it is easier to review and find.' },
+  { icon: 'draft', title: 'Information, not diagnosis', body: 'Symptom Checker and Drug Scan provide informational results, not a diagnosis or treatment plan.' },
 ] as const;
 
-export const disclaimer =
-  'Vitals is a health companion. It helps you organise and understand your own health information. It does not diagnose, treat or give medical advice, and it does not replace care from a doctor or pharmacist.';
+export const disclaimer = 'Vitals helps you organise your health information. Symptom Checker and Drug Scan provide informational results; they do not diagnose, treat or replace advice from a doctor or pharmacist.';
 
 export const faq = [
-  {
-    q: 'What is Vitals?',
-    a: 'A place to keep your health information — your medicines, symptoms, appointments and history — so it is organised and easy to find.',
-  },
-  {
-    q: 'Who is Vitals for?',
-    a: 'Anyone managing their own health, and anyone helping someone else with theirs — a parent, a partner, an older relative.',
-  },
-  {
-    q: 'What can I use it for?',
-    a: 'Medicine reminders, logging doses and symptoms, keeping appointments, following a pregnancy, and sharing a record with family who help you.',
-  },
-  {
-    q: 'Is Vitals free?',
-    a: 'Yes. Your own health record is free to use. A few extras, like downloading a health summary, are part of Premium.',
-  },
-  {
-    q: 'Does Vitals replace a doctor?',
-    a: 'No. Vitals helps you keep track of things and understand your own information. It does not diagnose or advise, and it is not a substitute for seeing a professional.',
-  },
-  {
-    q: 'Can I use it on the web?',
-    a: 'Yes — Vitals works in your browser today, on a phone or a computer. You can open it right now.',
-  },
-  {
-    q: 'Is there a mobile app?',
-    a: 'Not yet. An Android app is being built, with iOS to follow. Join the waitlist and we will let you know when it is ready.',
-  },
-  {
-    q: 'What happens to my health information?',
-    a: 'It stays yours. It is not shown to anyone unless you invite them, sharing is recorded, and you can take access away again.',
-  },
+  { q: 'What is Vitals?', a: 'Vitals is a health app for organising medicines, dose records, appointments, symptom checks and care information. Use it in your browser today.' },
+  { q: 'Who is Vitals for?', a: 'People keeping track of their own health, following a pregnancy or baby care journey, or helping manage a record for someone else.' },
+  { q: 'What can I use it for?', a: 'Medicine and dose records, reminders, appointments, symptom checks, medicine-image identification, mood entries, pregnancy and baby care, and family records.' },
+  { q: 'Is Vitals free?', a: 'Vitals has free features for your own health record. Premium includes the downloadable health summary and additional capacity for family records and connections. Check the app for current details.' },
+  { q: 'Does Vitals replace a doctor or pharmacist?', a: 'No. Symptom Checker and Drug Scan provide information only. They do not diagnose or treat a condition and do not replace professional care.' },
+  { q: 'Can I use Vitals today?', a: 'Yes. Open Vitals in a browser on your phone or computer. The current product is a PWA that works in the browser.' },
+  { q: 'Is the Android or iOS app available?', a: 'The React Native app is in development, with Android first and iOS planned later. It is not yet available to download.' },
+  { q: 'How does family access work?', a: 'You can manage a record for someone without their own Vitals account. Adults with their own account can invite you to connect to their record.' },
 ] as const;
 
 export const mobile = {
-  title: 'Vitals on mobile is coming.',
-  body:
-    'We are building the Vitals app for Android first, with iOS to follow. Everything you add on the web will be there when it arrives.',
-  note: 'Not available yet. Join the waitlist and we will tell you when it is.',
+  title: 'Use Vitals in your browser today.',
+  body: 'The current PWA works on a phone or computer browser. A separate React Native app is in development for Android first, with iOS planned later.',
+  note: 'The mobile app is not yet available to download.',
 };
 
 export const waitlist = {
-  title: 'Be first to get the app.',
-  body:
-    'Join the waitlist and we will email you once when the mobile app is ready. Nothing else.',
-  success: {
-    title: 'You are on the list.',
-    body: 'We will email you when the app is ready. You can keep using Vitals on the web in the meantime.',
-  },
+  title: 'Hear when the Android app is ready.',
+  body: 'Leave an email and we will send one update when the mobile app is available.',
+  success: { title: 'You are on the list.', body: 'We will email you when the app is ready. You can keep using Vitals in your browser in the meantime.' },
 };
 
 export const contact = {
-  title: 'Questions?',
-  body: 'If something is unclear or not working, tell us and a person will read it.',
+  title: 'Put your health information in one place.',
+  body: 'Open Vitals in your browser and start with the health details you want to keep close.',
 };

@@ -2,38 +2,34 @@ import { Nav } from '@/components/Nav';
 import { Hero } from '@/components/Hero';
 import { Explainer } from '@/components/Explainer';
 import { Features } from '@/components/Features';
-import { HowItWorks } from '@/components/HowItWorks';
+import { MotherBaby } from '@/components/MotherBaby';
+import { ConnectedCare } from '@/components/ConnectedCare';
+import { SmartTools } from '@/components/SmartTools';
 import { Showcase } from '@/components/Showcase';
+import { HowItWorks } from '@/components/HowItWorks';
 import { Trust } from '@/components/Trust';
+import { Premium } from '@/components/Premium';
 import { Mobile } from '@/components/Mobile';
 import { Faq } from '@/components/Faq';
 import { Waitlist } from '@/components/Waitlist';
 import { ContactFooter } from '@/components/ContactFooter';
+import { WAITLIST_ENDPOINT } from '@/content/site';
 
-/**
- * The order answers a first-time visitor's questions in the order they ask
- * them: what is this, what does it do, how do I start, is it real, can I trust
- * it with health information, is there an app, and then the smaller questions.
- *
- * Showcase sits after How it works on purpose — "this is real, here it is"
- * lands better once someone knows what they are looking at.
- */
 export default function Home() {
-  return (
-    <>
-      <Nav />
-      <main id="main">
-        <Hero />
-        <Explainer />
-        <Features />
-        <HowItWorks />
-        <Showcase />
-        <Trust />
-        <Mobile />
-        <Faq />
-        <Waitlist />
-        <ContactFooter />
-      </main>
-    </>
-  );
+  return <><Nav /><main id="main">
+    <Hero />
+    <Explainer />
+    <Features />
+    <MotherBaby />
+    <ConnectedCare />
+    <SmartTools />
+    <Showcase />
+    <HowItWorks />
+    <Premium />
+    <Trust />
+    <Mobile />
+    {WAITLIST_ENDPOINT ? <Waitlist /> : null}
+    <Faq />
+    <ContactFooter />
+  </main></>;
 }

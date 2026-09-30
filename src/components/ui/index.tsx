@@ -133,8 +133,8 @@ export function Icon({ name, size = 24, color }: { name: string; size?: number; 
  * per frame, and it stops observing once an element has appeared so a long page
  * does not accumulate work.
  *
- * Content is visible without JavaScript and without motion; see the
- * reduced-motion block in globals.css.
+ * JavaScript opts into the reveal only after an observer is available. Without
+ * JavaScript the default CSS leaves content visible.
  */
 export function Reveal({
   children,
@@ -161,6 +161,10 @@ export function Reveal({
       return;
     }
 
+    // Enhancement is opt-in. If JavaScript never runs, the CSS default remains
+    // visible instead of leaving the server-rendered content transparent.
+    el.dataset.revealEnhanced = 'true';
+
     const observer = new IntersectionObserver(
       entries => {
         for (const entry of entries) {
@@ -174,7 +178,10 @@ export function Reveal({
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      delete el.dataset.revealEnhanced;
+    };
   }, []);
 
   return (

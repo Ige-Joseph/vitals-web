@@ -4,11 +4,10 @@ import { trust, disclaimer } from '@/content/site';
 /**
  * Trust, stated only as far as the product actually goes.
  *
- * Every line here describes something the application does: access runs through
- * invitations you control, granting access writes a record, and reports show
- * recorded counts rather than scores. There is no claim about encryption
- * standards, certification or compliance, because none has been established —
- * and on a health product an unbacked security claim is worse than silence.
+ * Every line here stays within what the product can support: access is
+ * invitation-based, records collect the information people enter, and the
+ * smart tools are informational. There are no claims about encryption
+ * standards, certification or compliance.
  *
  * The medical disclaimer is given its own block rather than buried in the
  * footer. It is the most important sentence on the page.

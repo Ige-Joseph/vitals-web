@@ -1,149 +1,40 @@
-import { Icon, Reveal } from './ui';
-import { mobile, APP_STORE_URL, PLAY_STORE_URL, APP_URL } from '@/content/site';
-
-/**
- * The mobile app, which does not exist yet.
- *
- * The store buttons are present so the section does not need redesigning the
- * week the app ships — but while the URLs are unset they are rendered as
- * disabled `span`s carrying "Coming soon", not as links to a fake listing.
- * Nothing here is clickable that would take someone to a page that is not
- * there, and nothing implies the app can be downloaded today.
- *
- * Setting NEXT_PUBLIC_APP_STORE_URL / NEXT_PUBLIC_PLAY_STORE_URL turns them
- * into real links. That is the entire launch change.
- */
-
-function StoreButton({ store, href }: { store: 'apple' | 'google'; href: string }) {
-  const label = store === 'apple' ? 'App Store' : 'Google Play';
-  const live = Boolean(href);
-
-  const inner = (
-    <>
-      <Icon name={store === 'apple' ? 'phone_iphone' : 'android'} size={22} />
-      <span style={{ display: 'grid', textAlign: 'left', lineHeight: 1.15 }}>
-        <span style={{ fontSize: '0.6875rem', opacity: 0.75 }}>
-          {live ? 'Download on the' : 'Coming soon to'}
-        </span>
-        <span style={{ fontFamily: 'var(--font-headline)', fontWeight: 700, fontSize: '0.9375rem' }}>
-          {label}
-        </span>
-      </span>
-    </>
-  );
-
-  const style: React.CSSProperties = {
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '0.625rem',
-    padding: '0.7rem 1.15rem',
-    borderRadius: 'var(--radius-lg)',
-    border: '1px solid var(--outline-variant)',
-    background: live ? 'var(--on-surface)' : 'var(--surface-container)',
-    color: live ? 'var(--surface-container-lowest)' : 'var(--on-surface-variant)',
-    cursor: live ? 'pointer' : 'default',
-    opacity: live ? 1 : 0.75,
-  };
-
-  if (live) {
-    return (
-      <a href={href} style={style} target="_blank" rel="noopener noreferrer">
-        {inner}
-      </a>
-    );
-  }
-
-  // Not a link, and announced as unavailable rather than merely looking greyed.
-  return (
-    <span style={style} aria-disabled="true" title={`${label} — not available yet`}>
-      {inner}
-    </span>
-  );
-}
+import Image from 'next/image';
+import { APP_URL, mobile, WAITLIST_ENDPOINT } from '@/content/site';
+import { Button, Icon, Reveal } from './ui';
 
 export function Mobile() {
   return (
-    <section className="section">
+    <section className="section mobile-section">
       <div className="page">
         <Reveal>
           <div className="mobile-band">
             <div>
-              <p className="eyebrow" style={{ marginBottom: '1rem' }}>
-                On the way
-              </p>
-              <h2 style={{ fontSize: 'var(--step-h2)', fontWeight: 800, maxWidth: '16ch' }}>
-                {mobile.title}
-              </h2>
-              <p className="lead" style={{ marginTop: '1rem', maxWidth: '44ch' }}>
-                {mobile.body}
-              </p>
-
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginTop: '2rem' }}>
-                <StoreButton store="google" href={PLAY_STORE_URL} />
-                <StoreButton store="apple" href={APP_STORE_URL} />
+              <p className="eyebrow">Vitals today & next</p>
+              <h2>{mobile.title}</h2>
+              <p className="lead">{mobile.body}</p>
+              <div className="mobile-actions">
+                <Button href={APP_URL} external size="lg">Open Vitals <Icon name="arrow_outward" size={20} /></Button>
+                {WAITLIST_ENDPOINT ? <a className="mobile-waitlist" href="#waitlist">Get the Android app update</a> : null}
               </div>
-
-              <p
-                style={{
-                  marginTop: '1.25rem',
-                  fontSize: 'var(--step-small)',
-                  color: 'var(--outline)',
-                }}
-              >
-                {mobile.note}{' '}
-                <a href="#waitlist" style={{ color: 'var(--primary)', fontWeight: 600 }}>
-                  Join the waitlist
-                </a>
-                .
-              </p>
             </div>
-
-            <div className="mobile-aside">
-              <p style={{ fontSize: 'var(--step-small)', color: 'var(--on-surface-variant)' }}>
-                In the meantime, Vitals works in your phone&rsquo;s browser.
-              </p>
-              <a
-                href={APP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  marginTop: '0.75rem',
-                  fontFamily: 'var(--font-headline)',
-                  fontWeight: 700,
-                  color: 'var(--primary)',
-                }}
-              >
-                Open Vitals
-                <Icon name="arrow_outward" size={18} />
-              </a>
-            </div>
+            <aside className="mobile-note"><div className="mobile-photo"><Image src="/images/story/phone-stethoscope.webp" alt="A smartphone beside a stethoscope, representing browser-based health tools." fill sizes="(max-width: 800px) 100vw, 26vw" style={{ objectFit: 'cover', objectPosition: 'center' }} /></div><span className="mobile-note-icon"><Icon name="devices" size={23} /></span><p>{mobile.note}</p><p className="pwa-note">Vitals is a PWA: add it to your home screen from your browser if your device supports it.</p></aside>
           </div>
         </Reveal>
       </div>
-
       <style>{`
-        .mobile-band {
-          display: grid;
-          grid-template-columns: 1.5fr 1fr;
-          gap: clamp(2rem, 5vw, 4rem);
-          align-items: center;
-          padding: clamp(2rem, 5vw, 3.5rem);
-          border-radius: var(--radius-2xl);
-          background: var(--surface-container-lowest);
-          border: 1px solid var(--outline-variant);
-          box-shadow: var(--shadow-md);
-        }
-        .mobile-aside {
-          padding: 1.25rem;
-          border-radius: var(--radius-xl);
-          background: var(--surface-container-low);
-        }
-        @media (max-width: 860px) {
-          .mobile-band { grid-template-columns: 1fr; gap: 2rem; }
-        }
+        .mobile-section { background: var(--surface-container-low); }
+        .mobile-band { display: grid; grid-template-columns: 1.35fr .65fr; align-items: center; gap: clamp(2rem, 5vw, 4rem); padding: clamp(1.5rem, 5vw, 3.5rem); border: 1px solid var(--outline-variant); border-radius: var(--radius-2xl); background: var(--surface-container-lowest); box-shadow: var(--shadow-md); }
+        .mobile-band h2 { margin-top: .7rem; font-size: var(--step-h2); font-weight: 800; max-width: 16ch; }
+        .mobile-band .lead { margin-top: .9rem; max-width: 48ch; }
+        .mobile-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1.5rem; }
+        .mobile-waitlist { color: var(--primary); font: 700 .9rem var(--font-headline); text-decoration: underline; text-underline-offset: .2em; }
+        .mobile-note { padding: 1rem; border-radius: var(--radius-xl); background: var(--surface-container-low); }
+        .mobile-photo { position: relative; overflow: hidden; aspect-ratio: 1.65 / 1; margin-bottom: 1rem; border-radius: var(--radius-lg); }
+        .mobile-note-icon { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; margin-bottom: .85rem; border-radius: var(--radius-lg); color: var(--primary); background: var(--primary-fixed); }
+        .mobile-note p { color: var(--on-surface-variant); font-size: .87rem; }
+        .mobile-note .pwa-note { margin-top: .75rem; color: var(--outline); font-size: .78rem; }
+        @media (max-width: 800px) { .mobile-band { grid-template-columns: 1fr; } }
+        @media (max-width: 560px) { .mobile-actions { display: grid; } }
       `}</style>
     </section>
   );

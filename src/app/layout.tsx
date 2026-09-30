@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://vitals.health'),
   title: 'Vitals — Your health, all in one place',
   description:
-    'Vitals helps you keep track of your medicines, note how you are feeling, and keep your health information together. Free to use on the web.',
+    'Vitals is a health app for keeping medicines, appointments, and health information together. Use it in your browser today; free features are available, with some extras in Premium.',
   applicationName: 'Vitals',
   icons: {
     icon: '/favicon.svg',

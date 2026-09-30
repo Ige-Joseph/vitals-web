@@ -19,7 +19,6 @@ import { waitlist, WAITLIST_ENDPOINT } from '@/content/site';
 export function Waitlist() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [reason, setReason] = useState('');
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
   const [error, setError] = useState('');
 
@@ -36,7 +35,7 @@ export function Waitlist() {
       const res = await fetch(WAITLIST_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, reason }),
+        body: JSON.stringify({ name, email }),
       });
 
       if (!res.ok) throw new Error('Request failed');
@@ -120,18 +119,6 @@ export function Waitlist() {
                     onChange={e => setEmail(e.target.value)}
                     autoComplete="email"
                     required
-                  />
-                </Field>
-
-                <Field id="wl-reason" label="What would you use Vitals for?" optional>
-                  <textarea
-                    id="wl-reason"
-                    name="reason"
-                    className="fld"
-                    rows={3}
-                    value={reason}
-                    onChange={e => setReason(e.target.value)}
-                    style={{ resize: 'vertical' }}
                   />
                 </Field>
 
