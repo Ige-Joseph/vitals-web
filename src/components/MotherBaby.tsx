@@ -14,8 +14,16 @@ export function MotherBaby() {
       <div className="page">
         <div className="mother-intro">
           <Reveal>
-            <div className="mother-photo">
-              <Image src={pregnancy.image} alt={pregnancy.alt} fill sizes="(max-width: 800px) 100vw, 42vw" style={{ objectFit: 'cover', objectPosition: 'center 35%' }} />
+            <div className="mother-photo-stack">
+              <div className="mother-photo">
+                <Image src={pregnancy.image} alt={pregnancy.alt} fill sizes="(max-width: 800px) 100vw, 42vw" style={{ objectFit: 'cover', objectPosition: 'center 35%' }} />
+              </div>
+              <figure className="baby-photo-card">
+                <div className="baby-photo-card-image">
+                  <Image src="/images/story/baby-closeup.webp" alt="A newborn resting in a soft knitted wrap." fill sizes="(max-width: 560px) 42vw, 18vw" loading="lazy" style={{ objectFit: 'cover', objectPosition: 'center 48%' }} />
+                </div>
+                <figcaption>And then, a new beginning</figcaption>
+              </figure>
             </div>
           </Reveal>
           <Reveal delay={100}>
@@ -67,7 +75,16 @@ export function MotherBaby() {
       <style>{`
         .mother-baby { background: var(--surface-container-low); }
         .mother-intro { display: grid; grid-template-columns: .92fr 1.08fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
-        .mother-photo { position: relative; aspect-ratio: 4 / 5; max-height: 36rem; overflow: hidden; border-radius: var(--radius-2xl); box-shadow: var(--shadow-lg); }
+        .mother-photo-stack { position: relative; padding: .4rem 1.4rem 1rem 0; isolation: isolate; }
+        .mother-photo { position: relative; aspect-ratio: 4 / 5; max-height: 36rem; overflow: hidden; border-radius: var(--radius-2xl); box-shadow: var(--shadow-lg); background: var(--surface-container); }
+        .mother-photo img { transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+        .mother-photo-stack:hover .mother-photo img { transform: scale(1.025); }
+        .baby-photo-card { position: absolute; z-index: 2; top: 7%; right: -.2rem; width: 43%; margin: 0; padding: .35rem; border: 1px solid rgba(255,255,255,.9); border-radius: 1.2rem; background: rgba(247,249,255,.88); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); box-shadow: 0 20px 48px rgba(24,28,32,.2), inset 0 1px 0 rgba(255,255,255,.95); transform: rotate(2deg); transition: opacity .55s ease, transform .65s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease; }
+        .reveal[data-reveal-enhanced=true][data-shown=false] .baby-photo-card { opacity: 0; transform: translate(14px, 10px) rotate(4deg) scale(.96); }
+        .reveal[data-reveal-enhanced=true][data-shown=true] .baby-photo-card { opacity: 1; transform: rotate(2deg); transition-delay: .14s; }
+        .baby-photo-card:hover { transform: rotate(0) translateY(-4px); box-shadow: 0 26px 56px rgba(24,28,32,.24), inset 0 1px 0 rgba(255,255,255,.95); }
+        .baby-photo-card-image { position: relative; overflow: hidden; aspect-ratio: 1.18 / 1; border-radius: .9rem; background: var(--surface-container); }
+        .baby-photo-card figcaption { padding: .55rem .55rem .45rem; color: var(--on-surface-variant); font: 700 .67rem/1.35 var(--font-headline); }
         .mother-copy h2 { margin-top: .75rem; font-size: var(--step-h2); font-weight: 800; max-width: 15ch; }
         .mother-copy .lead { margin-top: 1.15rem; max-width: 48ch; }
         .mother-note { margin-top: 1.25rem; padding-left: .9rem; border-left: 3px solid var(--tertiary); color: var(--on-surface-variant); font-size: .88rem; }
@@ -89,7 +106,10 @@ export function MotherBaby() {
         .baby-art-disclosure p { margin-top: .65rem; color: var(--outline); font-size: .78rem; }
         @media (max-width: 780px) {
           .mother-intro { grid-template-columns: 1fr; }
+          .mother-photo-stack { padding: .25rem .4rem .6rem 0; }
           .mother-photo { aspect-ratio: 4 / 3; max-height: 25rem; }
+          .baby-photo-card { top: 6%; right: -.1rem; width: 43%; padding: .25rem; border-radius: 1rem; }
+          .baby-photo-card figcaption { padding: .4rem .4rem .35rem; font-size: .58rem; }
           .baby-stage-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); row-gap: .8rem; }
           .arrival-story { grid-template-columns: .8fr 1fr; }
           .baby-visit-story { grid-template-columns: .8fr 1fr; }

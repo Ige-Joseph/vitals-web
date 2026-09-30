@@ -20,19 +20,21 @@ export function Features() {
             ))}
           </div>
           <Reveal delay={100}>
-            <ProductScreen src="/images/screens/medications.webp" alt="Vitals medication management showing an invented demo medicine." title="Medicines & dose records" ratio="3 / 2" priority />
+            <ProductScreen src="/images/screens/medications.webp" alt="Vitals medication management showing an invented demo medicine." title="Medicines & dose records" ratio="3 / 2" />
           </Reveal>
         </div>
-        <div className="care-context" aria-label="Everyday healthcare context">
-          <figure className="care-context-item care-context-medication">
-            <div className="care-context-photo"><Image src="/images/story/medication-context.webp" alt="A person holding a medicine bottle." fill sizes="(max-width: 700px) 42vw, 22vw" style={{ objectFit: 'cover', objectPosition: 'center 38%' }} /></div>
-            <figcaption>Keep medicine details and dose records close.</figcaption>
-          </figure>
-          <figure className="care-context-item care-context-appointment">
-            <div className="care-context-photo"><Image src="/images/story/appointment-consult.webp" alt="A patient speaking with a clinician during an appointment." fill sizes="(max-width: 700px) 42vw, 22vw" style={{ objectFit: 'cover', objectPosition: 'center 42%' }} /></div>
-            <figcaption>Keep appointments and reminders in view.</figcaption>
-          </figure>
-        </div>
+        <Reveal>
+          <div className="care-context" aria-label="Everyday healthcare context">
+            <figure className="care-context-item care-context-medication">
+              <div className="care-context-photo"><Image src="/images/story/medication-context.webp" alt="A person holding a medicine bottle." fill sizes="(max-width: 700px) 82vw, 32vw" style={{ objectFit: 'cover', objectPosition: 'center 38%' }} /></div>
+              <figcaption>Keep medicine details and dose records close.</figcaption>
+            </figure>
+            <figure className="care-context-item care-context-appointment">
+              <div className="care-context-photo"><Image src="/images/story/appointment-consult.webp" alt="A patient speaking with a clinician during an appointment." fill sizes="(max-width: 700px) 55vw, 24vw" style={{ objectFit: 'cover', objectPosition: 'center 42%' }} /></div>
+              <figcaption>Keep appointments and reminders in view.</figcaption>
+            </figure>
+          </div>
+        </Reveal>
       </div>
       <style>{`
         .everyday-section { background: var(--surface-container-low); }
@@ -44,13 +46,18 @@ export function Features() {
         .everyday-icon-2 { color: var(--on-secondary-container); background: var(--secondary-fixed); }
         .everyday-feature h3 { font-size: 1rem; }
         .everyday-feature p { margin-top: .3rem; color: var(--on-surface-variant); font-size: .9rem; line-height: 1.5; }
-        .care-context { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(.75rem, 2vw, 1.5rem); max-width: 37rem; margin: 2.5rem 0 0 auto; }
-        .care-context-item { min-width: 0; margin: 0; }
-        .care-context-photo { position: relative; overflow: hidden; aspect-ratio: 1.45 / 1; border-radius: var(--radius-xl); }
-        .care-context-medication .care-context-photo { aspect-ratio: 1 / 1.12; }
-        .care-context-item figcaption { max-width: 34ch; margin-top: .55rem; color: var(--outline); font-size: .77rem; line-height: 1.4; }
-        @media (max-width: 800px) { .everyday-layout { grid-template-columns: 1fr; } }
-        @media (max-width: 560px) { .care-context { margin-top: 1.5rem; } .care-context-photo, .care-context-medication .care-context-photo { aspect-ratio: 1 / 1.1; } .care-context-item figcaption { font-size: .7rem; } }
+        .care-context { position: relative; width: min(100%, 43rem); height: clamp(18rem, 34vw, 26rem); margin: 3rem 0 0 auto; isolation: isolate; }
+        .care-context-item { position: absolute; margin: 0; border: 6px solid var(--surface-container-low); border-radius: calc(var(--radius-2xl) + .25rem); background: var(--surface-container-low); box-shadow: var(--shadow-xl); }
+        .care-context-medication { z-index: 1; left: 0; top: 0; width: 69%; }
+        .care-context-appointment { z-index: 2; right: 0; bottom: 0; width: 48%; transform: rotate(1.2deg); transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease; }
+        .care-context-photo { position: relative; overflow: hidden; aspect-ratio: 1.4 / 1; border-radius: var(--radius-xl); background: var(--surface-container); }
+        .care-context-photo img { transition: transform .75s cubic-bezier(.2,.7,.2,1); }
+        .care-context-item:hover .care-context-photo img { transform: scale(1.04); }
+        .care-context-appointment:hover { transform: rotate(0) translateY(-4px); box-shadow: var(--shadow-xl); }
+        .care-context-item figcaption { position: absolute; left: .85rem; bottom: .85rem; max-width: 31ch; padding: .65rem .8rem; border: 1px solid rgba(255,255,255,.8); border-radius: var(--radius-lg); color: var(--on-surface); background: rgba(247,249,255,.93); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: var(--shadow-sm); font-size: .76rem; font-weight: 600; line-height: 1.4; }
+        @media (max-width: 800px) { .everyday-layout { grid-template-columns: 1fr; } .care-context { margin-inline: auto; } }
+        @media (max-width: 560px) { .care-context { height: 17rem; margin-top: 2rem; } .care-context-item { border-width: 4px; border-radius: var(--radius-xl); } .care-context-medication { width: 82%; } .care-context-appointment { width: 55%; right: -.1rem; bottom: -.1rem; } .care-context-photo { aspect-ratio: 1.28 / 1; } .care-context-item figcaption { left: .5rem; bottom: .5rem; max-width: 25ch; padding: .45rem .55rem; font-size: .65rem; } }
+        @media (hover: none) { .care-context-item:hover .care-context-photo img { transform: none; } .care-context-appointment:hover { transform: rotate(1.2deg); } }
       `}</style>
     </section>
   );

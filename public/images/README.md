@@ -16,6 +16,7 @@ The following WebP derivatives are used by the landing page:
 | `story/child-visit.webp` | `website/appointment/pexels-pavel-danilyuk-5998445.jpg` | Early baby care; clinician visit context |
 | `story/medication-context.webp` | `website/medication/pexels-towfiqu-barbhuiya-3440682-11768111.jpg` | Everyday health; medicine context |
 | `story/phone-stethoscope.webp` | `website/general/pexels-negativespace-48603.jpg` | Browser/PWA section; health technology context |
+| `story/baby-closeup.webp` | `app/baby/pexels-maleen-fotograpia-18903732-28193071.jpg` | Mother & Baby; newborn close-up layered over pregnancy photography |
 | `baby/baby-month-01.webp` through `baby/baby-month-09.webp` | `app/baby/Baby Month/baby-month-01.png` through `baby-month-09.png` | Transparent illustration sequence |
 
 The photos were downscaled to a 1600px maximum dimension and encoded as WebP. Baby illustrations preserve transparency and are available behind an optional disclosure as a visual sequence only; the site does not attach week-level or medical development claims to them.

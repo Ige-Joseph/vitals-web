@@ -13,7 +13,7 @@ export function Explainer() {
               {explainer.facts.map((fact, index) => <Reveal as="div" key={fact.label} delay={index * 55}><div className="fact"><span className="fact-icon"><Icon name={fact.icon} size={20} /></span><div><dt>{fact.label}</dt><dd>{fact.value}</dd></div></div></Reveal>)}
             </dl>
           </div>
-          <Reveal delay={120}><ProductScreen src="/images/screens/dashboard.webp" alt="Vitals dashboard showing demo care tasks and activity." title="Vitals dashboard" ratio="9 / 7" priority /></Reveal>
+          <Reveal delay={120}><ProductScreen src="/images/screens/dashboard.webp" alt="Vitals dashboard showing demo care tasks and activity." title="Vitals dashboard" ratio="9 / 7" /></Reveal>
         </div>
       </div>
       <style>{`
