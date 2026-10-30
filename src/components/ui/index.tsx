@@ -45,7 +45,7 @@ export function Button({
     fontWeight: 700,
     fontSize: size === 'lg' ? '1.0625rem' : '0.9375rem',
     padding: size === 'lg' ? '1rem 1.75rem' : '0.75rem 1.375rem',
-    borderRadius: 'var(--radius-full)',
+    borderRadius: 'var(--radius-md)',
     border: '1px solid transparent',
     cursor: disabled ? 'not-allowed' : 'pointer',
     textAlign: 'center',
@@ -111,17 +111,7 @@ export function Button({
 /* ── Icon ─────────────────────────────────────────────────────────────── */
 
 /** Material Symbols, the same icon set the application uses. */
-export function Icon({ name, size = 24, color }: { name: string; size?: number; color?: string }) {
-  return (
-    <span
-      className="material-symbols-rounded"
-      aria-hidden="true"
-      style={{ fontSize: size, color, lineHeight: 1, userSelect: 'none' }}
-    >
-      {name}
-    </span>
-  );
-}
+export { Icon } from './Icon';
 
 /* ── Reveal ───────────────────────────────────────────────────────────── */
 
@@ -248,7 +238,7 @@ export function SectionHead({
       }}
     >
       {eyebrow ? <p className="eyebrow" style={{ marginBottom: '0.875rem' }}>{eyebrow}</p> : null}
-      <h2 style={{ fontSize: 'var(--step-h2)', fontWeight: 800 }}>{title}</h2>
+      <h2 style={{ fontSize: 'var(--step-h2)', fontWeight: 700 }}>{title}</h2>
       {body ? <p className="lead" style={{ marginTop: '1rem' }}>{body}</p> : null}
     </div>
   );

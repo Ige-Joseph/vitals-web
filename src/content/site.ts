@@ -7,10 +7,9 @@ export const WAITLIST_ENDPOINT = process.env.NEXT_PUBLIC_WAITLIST_ENDPOINT ?? ''
 export const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? '';
 
 export const nav = [
-  { label: 'About', href: '#about' },
-  { label: 'Product', href: '#product' },
-  { label: 'Mother & Baby', href: '#mother-baby' },
-  { label: 'Family care', href: '#family-care' },
+  { label: 'Features', href: '#product' },
+  { label: 'Care journeys', href: '#mother-baby' },
+  { label: 'How it works', href: '#how-it-works' },
   { label: 'FAQ', href: '#faq' },
 ] as const;
 

@@ -1,20 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import './visual-system.css';
 
-/**
- * Manrope and DM Sans are the application's two typefaces, loaded the same way
- * here. `display=swap` means the page is readable before the fonts arrive,
- * which matters more on a first visit over a slow connection than a moment of
- * fallback type does.
- *
- * Material Symbols is the icon set the application uses. It is loaded with a
- * narrow axis range rather than the full variable font, because the site needs
- * one weight at one optical size.
- */
-const FONTS =
-  'https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap';
-const ICONS =
-  'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap';
+// Self-hosted Manrope and DM Sans; interface icons are local SVG vectors.
+const FONTS = '/fonts/fonts.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://vitals.health'),
@@ -46,10 +35,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="stylesheet" href={FONTS} />
-        <link rel="stylesheet" href={ICONS} />
+        <link rel="preload" href="/fonts/manrope-700.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/dm-sans-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body>
         {/* First tab stop on the page. */}
