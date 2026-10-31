@@ -1,4 +1,4 @@
-import { Reveal, SectionHead } from './ui';
+import { Icon, Reveal, SectionHead } from './ui';
 import { faq } from '@/content/site';
 
 /**
@@ -25,9 +25,7 @@ export function Faq() {
               <details className="faq-item">
                 <summary>
                   <span>{item.q}</span>
-                  <span className="material-symbols-rounded faq-mark" aria-hidden="true">
-                    expand_more
-                  </span>
+                  <Icon name="expand_more" size={24} className="faq-mark" />
                 </summary>
                 <p>{item.a}</p>
               </details>
